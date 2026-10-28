@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f8f7">
+    <title>Clearwater Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" id="home-link" href="#menu" aria-label="Clearwater Collection home">
+            <img src="img/cw_logo_horizontal.png" alt="charity: water">
+            <span class="brand-divider" aria-hidden="true"></span>
+            <span class="brand-name">Clearwater<br>Collection</span>
+        </a>
+        <span class="header-note">A little game for a big cause</span>
+    </header>
+
+    <main>
+        <section class="screen title-screen" id="menu" aria-labelledby="game-title">
+            <div class="title-copy">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> EVERY DROP COUNTS</p>
+                <h1 id="game-title" tabindex="-1">Clearwater<br><span>Collection</span></h1>
+                <p class="intro">Clean water changes everything. Sort each drop and help keep the good water flowing.</p>
+                <button class="button button-primary" id="play-button" type="button">
+                    Play the game <span aria-hidden="true">&#8594;</span>
+                </button>
+                <p class="title-footnote">30 seconds · One drop at a time</p>
+            </div>
+            <div class="title-art" aria-hidden="true">
+                <div class="art-sun"></div>
+                <div class="art-drop art-drop-large"></div>
+                <div class="art-drop art-drop-small"></div>
+                <div class="art-drop art-drop-dark"></div>
+                <div class="art-ripple ripple-one"></div>
+                <div class="art-ripple ripple-two"></div>
+                <span class="art-caption">A brighter future starts<br>with clean water.</span>
+            </div>
+        </section>
+
+        <section class="screen game-screen" id="game" aria-labelledby="round-title" hidden>
+            <div class="game-heading">
+                <div>
+                    <p class="eyebrow"><span class="eyebrow-dot"></span> THE COLLECTION</p>
+                    <h2 id="round-title" tabindex="-1">Sort the water</h2>
+                </div>
+                <p class="round-instruction">Sort the oldest drop before it reaches the waterline.</p>
+            </div>
+
+            <div class="scoreboard" aria-label="Round status">
+                <div class="stat-block">
+                    <span class="stat-label">TIME LEFT</span>
+                    <span class="stat-value"><span id="timer">30</span><span class="stat-unit">sec</span></span>
+                </div>
+                <div class="timer-track" aria-hidden="true"><span id="timer-bar"></span></div>
+                <div class="stat-block stat-score">
+                    <span class="stat-label">SCORE</span>
+                    <span class="stat-value" id="score">0</span>
+                </div>
+            </div>
+
+            <div class="sorting-station">
+                <div class="drop-field" id="drop-field" aria-label="Falling water drops. The oldest drop has a yellow outline and is next to sort.">
+                    <div class="score-feedback" id="score-feedback" aria-live="polite" aria-atomic="true"></div>
+                </div>
+                <p class="sort-message" id="sort-message">The oldest drop has a yellow outline. Sort it first.</p>
+                <div class="basins" aria-label="Choose a basin">
+                    <button class="basin-button basin-clean" type="button" data-sort="clean" aria-label="Left basin: sort clean water into the blue basin">
+                        <span class="basin-icon" aria-hidden="true"><span class="basin-water"></span></span>
+                        <span class="basin-copy"><strong>Clean water</strong><span>Left basin</span></span>
+                        <span class="basin-arrow" aria-hidden="true">&#8594;</span>
+                    </button>
+                    <button class="basin-button basin-dirty" type="button" data-sort="dirty" aria-label="Right basin: sort dirty water into the dark basin">
+                        <span class="basin-icon basin-icon-dark" aria-hidden="true"><span class="basin-water"></span></span>
+                        <span class="basin-copy"><strong>Dirty water</strong><span>Right basin</span></span>
+                        <span class="basin-arrow" aria-hidden="true">&#8594;</span>
+                    </button>
+                </div>
+            </div>
+            <p class="game-tip">Left: clean <span aria-hidden="true">&middot;</span> Right: dirty <span aria-hidden="true">&middot;</span> Keys: &larr; / &rarr; or A / D <span aria-hidden="true">&middot;</span> Miss: <strong>-15 points</strong></p>
+        </section>
+
+        <section class="screen results-screen" id="results" aria-labelledby="results-title" hidden>
+            <div class="trophy-wrap" aria-hidden="true">
+                <span class="trophy-rays"></span>
+                <span class="trophy-icon">&#9733;</span>
+            </div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> ROUND COMPLETE</p>
+            <h2 id="results-title" tabindex="-1">Nice work,<br><span>water keeper.</span></h2>
+            <p class="results-copy">Every drop you sorted is a reminder that clean water matters.</p>
+            <div class="final-score"><span>YOUR SCORE</span><strong id="final-score">0</strong></div>
+            <div class="results-actions">
+                <button class="button button-primary" id="restart-button" type="button">Play again <span aria-hidden="true">&#8635;</span></button>
+                <button class="button button-secondary" id="menu-button" type="button">Back to menu</button>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer"><span>Clean water is a human right.</span><span>charity: water</span></footer>
+    <div class="confetti-layer" id="confetti-layer" aria-hidden="true" hidden></div>
+    <script src="script.js"></script>
+</body>
+</html>
