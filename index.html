@@ -23,9 +23,11 @@
                 <p class="eyebrow"><span class="eyebrow-dot"></span> EVERY DROP COUNTS</p>
                 <h1 id="game-title" tabindex="-1">Clearwater<br><span>Collection</span></h1>
                 <p class="intro">Clean water changes everything. Sort each drop and help keep the good water flowing.</p>
-                <button class="button button-primary" id="play-button" type="button">
-                    Play the game <span aria-hidden="true">&#8594;</span>
-                </button>
+                <div class="difficulty-buttons" aria-label="Choose a difficulty">
+                    <button class="button button-primary difficulty-button" type="button" data-difficulty="easy">Easy</button>
+                    <button class="button button-primary difficulty-button" type="button" data-difficulty="normal">Normal</button>
+                    <button class="button button-primary difficulty-button" type="button" data-difficulty="hard">Hard</button>
+                </div>
                 <p class="title-footnote">30 seconds · One drop at a time</p>
             </div>
             <div class="title-art" aria-hidden="true">
@@ -45,7 +47,10 @@
                     <p class="eyebrow"><span class="eyebrow-dot"></span> THE COLLECTION</p>
                     <h2 id="round-title" tabindex="-1">Sort the water</h2>
                 </div>
-                <p class="round-instruction">Sort the oldest drop before it reaches the waterline.</p>
+                <div class="round-details">
+                    <p class="round-instruction">Sort the oldest drop before it reaches the waterline.</p>
+                    <p class="round-difficulty">Difficulty: <strong id="game-difficulty">Normal</strong></p>
+                </div>
             </div>
 
             <div class="scoreboard" aria-label="Round status">
@@ -88,6 +93,7 @@
             <p class="eyebrow"><span class="eyebrow-dot"></span> ROUND COMPLETE</p>
             <h2 id="results-title" tabindex="-1">Nice work,<br><span>water keeper.</span></h2>
             <p class="results-copy">Every drop you sorted is a reminder that clean water matters.</p>
+            <p class="results-difficulty">Difficulty: <strong id="results-difficulty">Normal</strong></p>
             <div class="final-score"><span>YOUR SCORE</span><strong id="final-score">0</strong></div>
             <div class="results-actions">
                 <button class="button button-primary" id="restart-button" type="button">Play again <span aria-hidden="true">&#8635;</span></button>
@@ -95,7 +101,13 @@
             </div>
         </section>
     </main>
-    <footer class="site-footer"><span>Clean water is a human right.</span><span>charity: water</span></footer>
+    <footer class="site-footer">
+        <span>Clean water is a human right.</span>
+        <nav class="footer-links" aria-label="charity: water links">
+            <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer" aria-label="Visit charity: water website">charity: water</a>
+            <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer">donate</a>
+        </nav>
+    </footer>
     <div class="confetti-layer" id="confetti-layer" aria-hidden="true" hidden></div>
     <script src="script.js"></script>
 </body>

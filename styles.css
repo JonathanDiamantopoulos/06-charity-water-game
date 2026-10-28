@@ -168,6 +168,18 @@ h2 {
 	line-height: 1.65;
 }
 
+.difficulty-buttons {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 10px;
+}
+
+.difficulty-button {
+	width: 100%;
+	min-width: 0;
+	padding: 0 12px;
+}
+
 .button {
 	min-height: 52px;
 	padding: 0 22px;
@@ -325,9 +337,19 @@ h2 {
 	border-top: 1px solid var(--line);
 }
 
-.site-footer span:last-child {
+.footer-links {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.footer-links a {
 	color: var(--ink);
 	font-weight: 800;
+}
+
+.footer-links a:hover {
+	color: var(--blue-dark);
 }
 
 .game-screen {
@@ -354,6 +376,12 @@ h2 {
 	margin-bottom: 9px;
 }
 
+.round-details {
+	display: grid;
+	justify-items: end;
+	gap: 6px;
+}
+
 .game-heading h2,
 .results-screen h2 {
 	font-size: 42px;
@@ -364,6 +392,18 @@ h2 {
 	margin: 0 0 4px;
 	color: var(--muted);
 	font-size: 14px;
+}
+
+.round-difficulty,
+.results-difficulty {
+	margin: 0;
+	color: var(--muted);
+	font-size: 12px;
+}
+
+.round-difficulty strong,
+.results-difficulty strong {
+	color: var(--ink);
 }
 
 .scoreboard {
@@ -719,6 +759,10 @@ h2 {
 	line-height: 1.6;
 }
 
+.results-difficulty {
+	margin-bottom: clamp(8px, 1.5vh, 14px);
+}
+
 .final-score {
 	min-width: 170px;
 	margin-bottom: clamp(10px, 2.5vh, 22px);
@@ -891,6 +935,10 @@ h2 {
 		align-items: start;
 		flex-direction: column;
 		gap: 8px;
+	}
+
+	.round-details {
+		justify-items: start;
 	}
 
 	.game-heading h2 {

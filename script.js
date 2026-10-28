@@ -10,15 +10,23 @@ const dropField = document.querySelector('#drop-field');
 const sortMessage = document.querySelector('#sort-message');
 const scoreFeedback = document.querySelector('#score-feedback');
 const basinButtons = document.querySelectorAll('.basin-button');
+const difficultyButtons = document.querySelectorAll('.difficulty-button');
+const gameDifficulty = document.querySelector('#game-difficulty');
+const resultsDifficulty = document.querySelector('#results-difficulty');
 const confettiLayer = document.querySelector('#confetti-layer');
 
-const dropFallDuration = 4000;
+const difficultySettings = {
+	easy: { label: 'Easy', dropFallDuration: 5200 },
+	normal: { label: 'Normal', dropFallDuration: 4000 },
+	hard: { label: 'Hard', dropFallDuration: 2800 }
+};
 const dropSpawnDelay = 1450;
 const missPenalty = 15;
 const confettiColors = ['#2e9df7', '#ffc907', '#4fcb53', '#f16061', '#172326'];
 
 let secondsRemaining = roundLength;
 let score = 0;
+let selectedDifficulty = 'normal';
 let activeDrops = [];
 let timerInterval;
 let dropSpawnInterval;
@@ -46,9 +54,12 @@ function stopRound() {
 }
 
 // Reset all round values so a restart always begins fresh.
-function startGame() {
+function startGame(difficulty) {
 	stopRound();
 	clearConfetti();
+	selectedDifficulty = difficulty;
+	gameDifficulty.textContent = difficultySettings[selectedDifficulty].label;
+	resultsDifficulty.textContent = difficultySettings[selectedDifficulty].label;
 
 	secondsRemaining = roundLength;
 	score = 0;
@@ -86,6 +97,7 @@ function startGame() {
 // Add a new falling drop and start its miss timer.
 function spawnDrop() {
 	const type = Math.random() < 0.5 ? 'clean' : 'dirty';
+	const dropFallDuration = difficultySettings[selectedDifficulty].dropFallDuration;
 	const element = document.createElement('span');
 	element.className = `falling-drop drop-${type}`;
 	element.style.left = `${12 + Math.random() * 76}%`;
@@ -201,8 +213,15 @@ function finishGame() {
 	createConfetti();
 }
 
-document.querySelector('#play-button').addEventListener('click', startGame);
-document.querySelector('#restart-button').addEventListener('click', startGame);
+difficultyButtons.forEach((button) => {
+	button.addEventListener('click', () => {
+		startGame(button.dataset.difficulty);
+	});
+});
+
+document.querySelector('#restart-button').addEventListener('click', () => {
+	startGame(selectedDifficulty);
+});
 
 document.querySelector('#menu-button').addEventListener('click', () => {
 	stopRound();
