@@ -12,6 +12,7 @@ const scoreElement = document.querySelector('#score');
 const finalScoreElement = document.querySelector('#final-score');
 const dropField = document.querySelector('#drop-field');
 const sortMessage = document.querySelector('#sort-message');
+const milestoneMessage = document.querySelector('#milestone-message');
 const scoreFeedback = document.querySelector('#score-feedback');
 const basinButtons = document.querySelectorAll('.basin-button');
 const difficultyButtons = document.querySelectorAll('.difficulty-button');
@@ -24,6 +25,11 @@ const difficultySettings = {
 	normal: { label: 'Normal', dropFallDuration: 3000 },
 	hard: { label: 'Hard', dropFallDuration: 1000 }
 };
+const milestoneMessages = [
+	{ time: 15, message: 'Halfway there!' },
+	{ time: 10, message: '10 seconds left! Keep it up!' },
+	{ time: 5, message: '5 seconds left! Final push!' }
+];
 const dropSpawnDelay = 600;
 const missPenalty = 15;
 const confettiColors = ['#2e9df7', '#ffc907', '#4fcb53', '#f16061', '#172326'];
@@ -81,6 +87,7 @@ function startGame(difficulty) {
 	timerBar.style.backgroundColor = '';
 	sortMessage.textContent = 'The oldest drop has a yellow outline. Sort it first.';
 	sortMessage.className = 'sort-message';
+	milestoneMessage.textContent = 'Sort every drop before time runs out!';
 	scoreFeedback.className = 'score-feedback';
 	scoreFeedback.textContent = '';
 	basinButtons.forEach((button) => {
@@ -100,6 +107,12 @@ function startGame(difficulty) {
 		if (secondsRemaining <= 10) {
 			timerBar.style.backgroundColor = '#f16061';
 		}
+
+		milestoneMessages.forEach((milestone) => {
+			if (secondsRemaining === milestone.time) {
+				milestoneMessage.textContent = milestone.message;
+			}
+		});
 
 		if (secondsRemaining === 0) {
 			finishGame();

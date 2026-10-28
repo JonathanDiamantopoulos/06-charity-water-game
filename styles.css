@@ -552,6 +552,22 @@ h2 {
 	color: #c13e3a;
 }
 
+.milestone-message {
+	box-sizing: border-box;
+	display: flex;
+	height: 36px;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 8px 12px;
+	color: var(--blue-dark);
+	font-weight: 800;
+	font-size: clamp(10px, 3vw, 13px);
+	text-align: center;
+	white-space: nowrap;
+	background: #f2f9f8;
+}
+
 .score-feedback:empty {
 	display: none;
 }

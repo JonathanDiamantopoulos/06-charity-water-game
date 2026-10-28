@@ -69,7 +69,8 @@
                 <div class="drop-field" id="drop-field" aria-label="Falling water drops. The oldest drop has a yellow outline and is next to sort.">
                     <div class="score-feedback" id="score-feedback" aria-live="polite" aria-atomic="true"></div>
                 </div>
-                <p class="sort-message" id="sort-message">The oldest drop has a yellow outline. Sort it first.</p>
+                <p class="sort-message" id="sort-message" aria-live="polite" aria-atomic="true">The oldest drop has a yellow outline. Sort it first.</p>
+                <p class="milestone-message" id="milestone-message" aria-live="polite" aria-atomic="true">Sort every drop before time runs out!</p>
                 <div class="basins" aria-label="Choose a basin">
                     <button class="basin-button basin-clean" type="button" data-sort="clean" aria-label="Left basin: sort clean water into the blue basin">
                         <span class="basin-icon" aria-hidden="true"><span class="basin-water"></span></span>
