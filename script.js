@@ -2,6 +2,10 @@ const roundLength = 30;
 const titleScreen = document.querySelector('#menu');
 const gameScreen = document.querySelector('#game');
 const resultsScreen = document.querySelector('#results');
+const gameStartSound = document.querySelector('#game-start-sound');
+const victoryChimeSound = document.querySelector('#victory-chime-sound');
+const powSound = document.querySelector('#pow-sound');
+const winnerGameSound = document.querySelector('#winner-game-sound');
 const timerElement = document.querySelector('#timer');
 const timerBar = document.querySelector('#timer-bar');
 const scoreElement = document.querySelector('#score');
@@ -16,11 +20,11 @@ const resultsDifficulty = document.querySelector('#results-difficulty');
 const confettiLayer = document.querySelector('#confetti-layer');
 
 const difficultySettings = {
-	easy: { label: 'Easy', dropFallDuration: 5200 },
-	normal: { label: 'Normal', dropFallDuration: 4000 },
-	hard: { label: 'Hard', dropFallDuration: 2800 }
+	easy: { label: 'Easy', dropFallDuration: 5000 },
+	normal: { label: 'Normal', dropFallDuration: 3000 },
+	hard: { label: 'Hard', dropFallDuration: 1000 }
 };
-const dropSpawnDelay = 1450;
+const dropSpawnDelay = 600;
 const missPenalty = 15;
 const confettiColors = ['#2e9df7', '#ffc907', '#4fcb53', '#f16061', '#172326'];
 
@@ -31,6 +35,14 @@ let activeDrops = [];
 let timerInterval;
 let dropSpawnInterval;
 let confettiRemovalTimeout;
+
+// Restart a sound from the beginning and report playback errors.
+function playSound(sound) {
+	sound.currentTime = 0;
+	sound.play().catch((error) => {
+		console.error('Unable to play game sound:', error);
+	});
+}
 
 // Show one screen at a time and move focus to its heading.
 function showScreen(screenToShow) {
@@ -76,6 +88,7 @@ function startGame(difficulty) {
 	});
 
 	showScreen(gameScreen);
+	playSound(gameStartSound);
 	spawnDrop();
 	dropSpawnInterval = setInterval(spawnDrop, dropSpawnDelay);
 
@@ -157,6 +170,7 @@ function sortDrop(chosenType) {
 	const isCorrect = chosenType === oldestDrop.type;
 	const points = isCorrect ? 10 : -5;
 	removeDrop(oldestDrop);
+	playSound(isCorrect ? victoryChimeSound : powSound);
 	score = Math.max(0, score + points);
 	sortMessage.textContent = isCorrect ? 'Correct sort!' : 'Wrong basin!';
 	sortMessage.className = `sort-message ${isCorrect ? 'message-correct' : 'message-wrong'}`;
@@ -172,6 +186,7 @@ function missDrop(drop) {
 	}
 
 	removeDrop(drop);
+	playSound(powSound);
 	score = Math.max(0, score - missPenalty);
 	scoreElement.textContent = score;
 	sortMessage.textContent = 'A drop was missed!';
@@ -208,6 +223,7 @@ function clearConfetti() {
 
 function finishGame() {
 	stopRound();
+	playSound(winnerGameSound);
 	finalScoreElement.textContent = score;
 	showScreen(resultsScreen);
 	createConfetti();
