@@ -247,7 +247,7 @@ h2 {
 	width: 72px;
 	height: 88px;
 	border-radius: 50% 50% 50% 0;
-	transform: rotate(-45deg);
+	transform: scaleY(-1) rotate(-45deg);
 	background: var(--blue);
 }
 
@@ -466,7 +466,7 @@ h2 {
 	border-radius: 50% 50% 50% 0;
 	background: var(--blue);
 	box-shadow: 0 7px 14px rgb(24 68 77 / 16%);
-	transform: translateX(-50%) rotate(-45deg);
+	transform: translateX(-50%) scaleX(-1) rotate(135deg);
 	animation-name: fall;
 	animation-timing-function: linear;
 	animation-fill-mode: forwards;
@@ -666,18 +666,6 @@ h2 {
 	color: var(--ink);
 }
 
-.game-tip {
-	margin: 12px 0 0;
-	color: var(--muted);
-	font-size: 12px;
-	text-align: center;
-	flex: 0 0 auto;
-}
-
-.game-tip strong {
-	color: var(--ink);
-}
-
 .results-screen {
 	height: 100%;
 	padding: clamp(12px, 3vh, 45px) 20px;
@@ -781,8 +769,8 @@ h2 {
 }
 
 @keyframes fall {
-	from { top: -70px; transform: translateX(-50%) rotate(-45deg) scale(0.85); }
-	to { top: calc(100% - 56px); transform: translateX(-50%) rotate(-45deg) scale(1); }
+	from { top: -70px; transform: translateX(-50%) scaleX(-1) rotate(135deg) scale(0.85); }
+	to { top: calc(100% - 56px); transform: translateX(-50%) scaleX(-1) rotate(135deg) scale(1); }
 }
 
 @keyframes score-pop {
@@ -1058,11 +1046,6 @@ h2 {
 		padding: 8px;
 	}
 
-	.game-tip {
-		margin-top: 5px;
-		font-size: 10px;
-	}
-
 	.results-screen {
 		padding: 8px 12px;
 	}
@@ -1180,8 +1163,7 @@ h2 {
 		font-size: 10px;
 	}
 
-	.basin-copy span,
-	.game-tip {
+	.basin-copy span {
 		display: none;
 	}
 
